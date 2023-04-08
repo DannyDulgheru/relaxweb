@@ -1,7 +1,7 @@
 {
-    "name": "Moodlody",
-    "short_name": "MLD",
-    "description": "Moodlody is an app with nature sounds to help you focus, sleep, relax and relieve stress.",
+    "name": "Relax Web",
+    "short_name": "RLX",
+    "description": "Relax Web is an app with nature sounds to help you focus, sleep, relax and relieve stress.",
     "theme_color": "#FFFFFF",
     "background_color": "#FFFFFF",
     "start_url": "/",
