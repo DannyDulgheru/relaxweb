@@ -1,15 +1,15 @@
 export default function Head() {
   return (
     <>
-      <title>Moodlody</title>
+      <title>Relax Web</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"
-        content="Moodlody is an app with nature sounds to help you focus, sleep, relax and relieve stress."
+        content="Relax Web is an app with nature sounds to help you focus, sleep, relax and relieve stress."
       />
       <meta
         name="keywords"
-        content="moodlody, nature sounds, focus, sleep, relaxation, stress relief, app, soundscape, 
+        content="relaxweb, nature sounds, focus, sleep, relaxation, stress relief, app, soundscape, 
         mindfulness, wellness, soothing, calming, concentration, meditation, peaceful, tranquility,
         rejuvenation, harmony"
       />
@@ -38,11 +38,11 @@ export default function Head() {
       <meta name="theme-color" content="#ffffff" />
 
       {/* <!-- Facebook Meta Tags --> */}
-      <meta property="og:url" content="https://moodlody.vercel.app/" />
-      <meta property="og:title" content="Moodlody" />
+      <meta property="og:url" content="https://relaxweb.vercel.app/" />
+      <meta property="og:title" content="Relax Web" />
       <meta
         property="og:description"
-        content="Moodlody is an app with nature sounds to help you focus, sleep, relax and relieve stress."
+        content="Relax Web is an app with nature sounds to help you focus, sleep, relax and relieve stress."
       />
       <meta property="og:image" content="/assets/image.png" />
 
@@ -50,10 +50,10 @@ export default function Head() {
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="moodlody.vercel.app" />
       <meta property="twitter:url" content="https://moodlody.vercel.app/" />
-      <meta name="twitter:title" content="Moodlody" />
+      <meta name="twitter:title" content="Relax Web" />
       <meta
         name="twitter:description"
-        content="Moodlody is an app with nature sounds to help you focus, sleep, relax and relieve stress."
+        content="Relax Web is an app with nature sounds to help you focus, sleep, relax and relieve stress."
       />
       <meta name="twitter:image" content="/assets/image.png" />
     </>
