@@ -54,14 +54,23 @@ const SoundList = ({ sounds }: SoundListType) => {
 
   return (
     <div className="flex flex-col gap-[2rem] justify-center items-center pb-[4rem]">
-      <div className="flex gap-[2rem]">
+      <div className="flex gap-[2rem]" role="group" aria-label="Sound controls">
         <Tooltip title="Shuffle" placement="top">
-          <button onClick={handleShuffle} className="player-control">
+          <button 
+            onClick={handleShuffle} 
+            className="player-control"
+            aria-label="Shuffle and play random sound"
+          >
             <FiShuffle size={20} color="white" />
           </button>
         </Tooltip>
-        <Tooltip title="Mute/Umnute" placement="top">
-          <button onClick={handleMuteUnmute} className="player-control">
+        <Tooltip title={isMuted ? "Unmute" : "Mute"} placement="top">
+          <button 
+            onClick={handleMuteUnmute} 
+            className="player-control"
+            aria-label={isMuted ? "Unmute all sounds" : "Mute all sounds"}
+            aria-pressed={isMuted}
+          >
             {isMuted ? (
               <BsFillVolumeMuteFill size={20} color="white" />
             ) : (
@@ -70,12 +79,16 @@ const SoundList = ({ sounds }: SoundListType) => {
           </button>
         </Tooltip>
         <Tooltip title="Stop/Reset" placement="top">
-          <button onClick={handleStopAll} className="player-control">
+          <button 
+            onClick={handleStopAll} 
+            className="player-control"
+            aria-label="Stop all sounds and reset"
+          >
             <BsFillStopFill size={20} color="white" />
           </button>
         </Tooltip>
       </div>
-      <div className="grid gap-[2rem] sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-[2rem] sm:grid-cols-2 lg:grid-cols-4" role="region" aria-label="Available nature sounds">
         {sounds.map((sound, index) => {
           return (
             <Sound

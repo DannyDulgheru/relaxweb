@@ -1,11 +1,11 @@
 export default function Head() {
   return (
     <>
-      <title>Relax Web</title>
+      <title>Moodlody - Relax with Nature Sounds</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"
-        content="Relax Web is an app with nature sounds to help you focus, sleep, relax and relieve stress."
+        content="Moodlody is an immersive app with nature sounds to help you focus, sleep, relax and relieve stress. Mix up to 5 sounds for a custom ambient experience."
       />
       <meta
         name="keywords"
@@ -38,11 +38,11 @@ export default function Head() {
       <meta name="theme-color" content="#ffffff" />
 
       {/* <!-- Facebook Meta Tags --> */}
-      <meta property="og:url" content="https://relaxweb.vercel.app/" />
-      <meta property="og:title" content="Relax Web" />
+      <meta property="og:url" content="https://moodlody.vercel.app/" />
+      <meta property="og:title" content="Moodlody - Relax with Nature Sounds" />
       <meta
         property="og:description"
-        content="Relax Web is an app with nature sounds to help you focus, sleep, relax and relieve stress."
+        content="Moodlody is an immersive app with nature sounds to help you focus, sleep, relax and relieve stress. Mix up to 5 sounds for a custom ambient experience."
       />
       <meta property="og:image" content="/assets/image.png" />
 
@@ -50,10 +50,10 @@ export default function Head() {
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="moodlody.vercel.app" />
       <meta property="twitter:url" content="https://moodlody.vercel.app/" />
-      <meta name="twitter:title" content="Relax Web" />
+      <meta name="twitter:title" content="Moodlody - Relax with Nature Sounds" />
       <meta
         name="twitter:description"
-        content="Relax Web is an app with nature sounds to help you focus, sleep, relax and relieve stress."
+        content="Moodlody is an immersive app with nature sounds to help you focus, sleep, relax and relieve stress. Mix up to 5 sounds for a custom ambient experience."
       />
       <meta name="twitter:image" content="/assets/image.png" />
     </>

@@ -5,18 +5,18 @@ export default function Home() {
   return (
     <main className="w-ful h-full">
       <div className="flex flex-col justify-center items-center gap-[2rem] container">
-        <div className="pt-[4rem] text-center text-white">
-          <div className="text-[32px] sm:text-[48px] lg:text-[72px] font-bold">
-            Relax Web
-          </div>
-          <div>
-            “Relax Web is an app with nature sounds to help you focus, sleep,
-            relax and relieve stress.”
-          </div>
-        </div>
-        <div>
+        <header className="pt-[4rem] text-center text-white">
+          <h1 className="text-[32px] sm:text-[48px] lg:text-[72px] font-bold">
+            Moodlody
+          </h1>
+          <p className="text-lg">
+            Relax with nature sounds to help you focus, sleep, and relieve
+            stress.
+          </p>
+        </header>
+        <section aria-label="Sound player">
           <SoundList />
-        </div>
+        </section>
       </div>
       <Footer />
     </main>

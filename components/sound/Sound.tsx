@@ -20,38 +20,46 @@ const Sound = ({
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
+    // Initialize audio element only once
+    if (!audioRef.current) {
+      const audio = new Audio(src)
+      audioRef.current = audio
+      audio.loop = true
+      audio.preload = 'metadata' // Only load metadata initially for better performance
+    }
+    
+    return () => {
+      // Cleanup audio when component unmounts
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
+    }
+  }, [src])
+
+  useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = isMuted ? 0 : 1
+      audioRef.current.volume = isMuted ? 0 : volume
     }
-  }, [isMuted])
+  }, [isMuted, volume])
 
   useEffect(() => {
-    if (!audioRef.current) {
-      const audio = new Audio(src)
-      audioRef.current = audio
-      audio.loop = true
-    }
-    if (isActive) {
-      audioRef.current.play()
-      onPlay && onPlay()
-    } else {
-      audioRef.current.pause()
-      onPause && onPause()
-    }
-  }, [isActive, src])
-
-  useEffect(() => {
-    if (!audioRef.current) {
-      const audio = new Audio(src)
-      audioRef.current = audio
-      audio.loop = true
-    }
+    if (!audioRef.current) return
+    
     if (isPlaying) {
-      audioRef.current.play()
+      // Preload full audio when about to play
+      audioRef.current.preload = 'auto'
+      const playPromise = audioRef.current.play()
+      // Handle play promise to avoid unhandled rejection errors
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.error(`Error playing audio for ${title}:`, error)
+        })
+      }
     } else {
       audioRef.current.pause()
     }
-  }, [isPlaying, src])
+  }, [isPlaying])
 
   const handleSoundPlay = () => {
     if (isPlaying) {
@@ -71,15 +79,17 @@ const Sound = ({
   }
   return (
     <div className="relative">
-      <div
+      <button
         onClick={handleSoundPlay}
+        aria-label={`${isPlaying ? 'Stop' : 'Play'} ${title} sound`}
+        aria-pressed={isPlaying}
         className={`p-[3rem_5rem] border-[2px] cursor-pointer border-white rounded-lg flex flex-col gap-[.5rem] justify-center items-center hover:bg-[rgba(255,255,255,.05)] ${
           isPlaying ? 'stop-sound' : 'play-sound'
         }`}
       >
         <div className="text-white font-bold">{title}</div>
-        <img src={icon} alt="" className="w-[75px] h-[75px]" />
-      </div>
+        <img src={icon} alt={`${title} icon`} className="w-[75px] h-[75px]" />
+      </button>
       {isPlaying ? (
         <Slider
           min={0}
@@ -87,7 +97,7 @@ const Sound = ({
           max={1}
           onChange={handleVolumeChange}
           value={volume}
-          aria-label="Volume"
+          aria-label={`Volume control for ${title} sound`}
           className="!absolute !left-1/2 !transform !-translate-x-1/2  !bottom-[20px] !w-[170px] !text-white"
         />
       ) : (
