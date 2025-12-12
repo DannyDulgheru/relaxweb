@@ -53,7 +53,7 @@ const Sound = ({
       // Handle play promise to avoid unhandled rejection errors
       if (playPromise !== undefined) {
         playPromise.catch(error => {
-          console.error('Error playing audio:', error)
+          console.error(`Error playing audio for ${title}:`, error)
         })
       }
     } else {
