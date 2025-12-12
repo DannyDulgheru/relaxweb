@@ -20,38 +20,46 @@ const Sound = ({
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
+    // Initialize audio element only once
+    if (!audioRef.current) {
+      const audio = new Audio(src)
+      audioRef.current = audio
+      audio.loop = true
+      audio.preload = 'metadata' // Only load metadata initially for better performance
+    }
+    
+    return () => {
+      // Cleanup audio when component unmounts
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
+    }
+  }, [src])
+
+  useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = isMuted ? 0 : 1
+      audioRef.current.volume = isMuted ? 0 : volume
     }
-  }, [isMuted])
+  }, [isMuted, volume])
 
   useEffect(() => {
-    if (!audioRef.current) {
-      const audio = new Audio(src)
-      audioRef.current = audio
-      audio.loop = true
-    }
-    if (isActive) {
-      audioRef.current.play()
-      onPlay && onPlay()
-    } else {
-      audioRef.current.pause()
-      onPause && onPause()
-    }
-  }, [isActive, src])
-
-  useEffect(() => {
-    if (!audioRef.current) {
-      const audio = new Audio(src)
-      audioRef.current = audio
-      audio.loop = true
-    }
+    if (!audioRef.current) return
+    
     if (isPlaying) {
-      audioRef.current.play()
+      // Preload full audio when about to play
+      audioRef.current.preload = 'auto'
+      const playPromise = audioRef.current.play()
+      // Handle play promise to avoid unhandled rejection errors
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.error('Error playing audio:', error)
+        })
+      }
     } else {
       audioRef.current.pause()
     }
-  }, [isPlaying, src])
+  }, [isPlaying])
 
   const handleSoundPlay = () => {
     if (isPlaying) {

@@ -1,9 +1,9 @@
 {
-    "name": "Relax Web",
-    "short_name": "RLX",
-    "description": "Relax Web is an app with nature sounds to help you focus, sleep, relax and relieve stress.",
-    "theme_color": "#FFFFFF",
-    "background_color": "#FFFFFF",
+    "name": "Moodlody - Relax with Nature Sounds",
+    "short_name": "Moodlody",
+    "description": "Moodlody is an immersive app with nature sounds to help you focus, sleep, relax and relieve stress. Mix up to 5 sounds for a custom ambient experience.",
+    "theme_color": "#0ea5e9",
+    "background_color": "#0ea5e9",
     "start_url": "/",
     "display": "standalone",
     "orientation": "portrait",
@@ -11,17 +11,20 @@
         {
             "src": "/android-chrome-192x192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "/android-chrome-384x384.png",
             "sizes": "384x384",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         },
         {
             "src": "/android-chrome-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ]
 }
