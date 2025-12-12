@@ -33,14 +33,14 @@ describe('Sound Component', () => {
 
   it('renders sound icon with correct attributes', () => {
     render(<Sound {...mockProps} />)
-    const img = screen.getByAltText('')
+    const img = screen.getByAltText('Rain icon')
     expect(img).toHaveAttribute('src', '/assets/rain-icon.svg')
   })
 
   it('calls onPlay when clicked and not playing', () => {
     render(<Sound {...mockProps} />)
-    const soundElement = screen.getByText('Rain').closest('div')
-    fireEvent.click(soundElement!)
+    const button = screen.getByRole('button', { name: /play rain sound/i })
+    fireEvent.click(button)
     expect(mockProps.onPlay).toHaveBeenCalledTimes(1)
   })
 
@@ -49,17 +49,18 @@ describe('Sound Component', () => {
     const onPauseMock = jest.fn()
     const propsWithMock = { ...playingProps, onPause: onPauseMock }
     render(<Sound {...propsWithMock} />)
-    const soundElement = screen.getByText('Rain').closest('div')
-    fireEvent.click(soundElement!)
+    const button = screen.getByRole('button', { name: /stop rain sound/i })
+    fireEvent.click(button)
     expect(onPauseMock).toHaveBeenCalled()
   })
 
   it('shows volume slider when playing', () => {
     const playingProps = { ...mockProps, isPlaying: true }
     render(<Sound {...playingProps} />)
-    const slider = screen.getByRole('slider')
+    const slider = screen.getByRole('slider', {
+      name: /volume control for rain sound/i
+    })
     expect(slider).toBeInTheDocument()
-    expect(slider).toHaveAttribute('aria-label', 'Volume')
   })
 
   it('does not show volume slider when not playing', () => {

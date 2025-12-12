@@ -71,15 +71,17 @@ const Sound = ({
   }
   return (
     <div className="relative">
-      <div
+      <button
         onClick={handleSoundPlay}
+        aria-label={`${isPlaying ? 'Stop' : 'Play'} ${title} sound`}
+        aria-pressed={isPlaying}
         className={`p-[3rem_5rem] border-[2px] cursor-pointer border-white rounded-lg flex flex-col gap-[.5rem] justify-center items-center hover:bg-[rgba(255,255,255,.05)] ${
           isPlaying ? 'stop-sound' : 'play-sound'
         }`}
       >
         <div className="text-white font-bold">{title}</div>
-        <img src={icon} alt="" className="w-[75px] h-[75px]" />
-      </div>
+        <img src={icon} alt={`${title} icon`} className="w-[75px] h-[75px]" />
+      </button>
       {isPlaying ? (
         <Slider
           min={0}
@@ -87,7 +89,7 @@ const Sound = ({
           max={1}
           onChange={handleVolumeChange}
           value={volume}
-          aria-label="Volume"
+          aria-label={`Volume control for ${title} sound`}
           className="!absolute !left-1/2 !transform !-translate-x-1/2  !bottom-[20px] !w-[170px] !text-white"
         />
       ) : (
